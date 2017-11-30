@@ -36,15 +36,15 @@ void draw() {
     //rotate(radians(5)); //can change the radians to produce different shapes depending on the range given
     //translate(tt / 100, tt/ 300);
    
-  if (applyFilter == true) {
-    filter(edges);
-  }
-  
   // The sphere doesn't have the edge detection applied 
   // on it because it is drawn after filter() is called.
   rotateY(frameCount * 0.02);
   translate(150, 0);
   sphere(40);
+  if (applyFilter == true) {
+    filter(edges);
+  }
+  
 }
 
 void mousePressed() {
