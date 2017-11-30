@@ -2,7 +2,7 @@
 PImage img;
 
 void setup() {
-  size(300, 300, P2D);
+  size(300, 300, P3D);
   img = loadImage("505773.jpg");
   textureMode(NORMAL);
 }
@@ -10,7 +10,9 @@ void setup() {
 void draw() {
   background(0);
   translate(width/2, height/2);
-  rotate(map(mouseX, 0, width, -PI, PI));
+  //rotate(map(mouseX, 0, width, -PI, PI));
+  rotateX(frameCount / 100.0);
+  rotateY(frameCount / 200.0);
   if (mousePressed) {
     textureWrap(REPEAT); 
   } else {
