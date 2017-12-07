@@ -5,7 +5,7 @@
  * 
  * Press the mouse to turn the filter on and off.
  */
- 
+PShape s;
  PShader edges;
 boolean applyFilter = true;
 
@@ -13,6 +13,28 @@ void setup() {
   size(720, 560, P3D);
   edges = loadShader("edges.glsl");
   noStroke(); 
+// Make a shape
+  s = createShape();
+  s.beginShape();
+  s.fill(0);
+  s.stroke(255);
+  s.strokeWeight(2);
+  // Exterior part of shape
+  s.vertex(-100,-100);
+  s.vertex(100,-100);
+  s.vertex(100,100);
+  s.vertex(-100,100);
+  
+  // Interior part of shape
+  s.beginContour();
+  s.vertex(-10,-10);
+  s.vertex(-10,10);
+  s.vertex(10,10);
+  s.vertex(10,-10);
+  s.endContour();
+  
+  // Finishing off shape
+  s.endShape(CLOSE);
   //rectMode(CENTER);
 }
 
@@ -29,11 +51,16 @@ void draw() {
   box(120);
   popMatrix();
   
+   translate(2, 2);
+  // Shapes can be rotated
+  s.rotate(0.01);
+  shape(s);
+  
  //tt = (tt + 1) % 1000;
  //for (int i = 0; 
     //i < 280; // can be changed to 359 highest value that can be attained to produce a full circle
     //i= i + 1) {
-    rotate(radians(100)); //can change the radians to produce different shapes depending on the range given
+    rotate(radians(25)); //can change the radians to produce different shapes depending on the range given
     //translate(tt / 100, tt/ 300);
    
   // The sphere doesn't have the edge detection applied 
